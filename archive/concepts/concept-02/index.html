@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Rare Fish Concept 02</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <section class="sidebar__block">
+          <p class="eyebrow">Concept 02</p>
+          <h1>Calm Radio Object</h1>
+          <p class="muted">
+            Более тихий и дорогой подход: реальный музыкальный контент, fullscreen
+            подача и скеоморфизм только намеком.
+          </p>
+        </section>
+
+        <section class="sidebar__block">
+          <p class="label">Экраны</p>
+          <div class="picker-list" id="scene-picker"></div>
+        </section>
+
+        <section class="sidebar__block">
+          <p class="label">Треки</p>
+          <div class="picker-list" id="track-picker"></div>
+        </section>
+      </aside>
+
+      <main class="preview">
+        <section class="phone">
+          <div class="phone__frame">
+            <div class="phone__screen" id="screen-root">
+              <header class="statusbar">
+                <span>9:41</span>
+                <span>Rare Fish</span>
+                <span>Live</span>
+              </header>
+
+              <div class="screen-content" id="screen-content"></div>
+
+              <button class="corner-button" id="nav-toggle" aria-label="Open sections">
+                Sections
+              </button>
+
+              <div class="section-sheet" id="section-sheet"></div>
+
+              <div class="settings-sheet" id="settings-sheet"></div>
+
+              <div class="confirm-sheet" id="confirm-sheet">
+                <div class="confirm-card">
+                  <p class="label">Catch</p>
+                  <h3>Remove this track?</h3>
+                  <p class="muted">
+                    Трек исчезнет из списка сохраненных, но его можно будет
+                    добавить снова.
+                  </p>
+                  <div class="confirm-actions">
+                    <button class="secondary-button" data-action="close-confirm">
+                      Cancel
+                    </button>
+                    <button class="primary-button" data-action="confirm-remove">
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

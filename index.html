@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rare Fish — Prototype</title>
+    <link rel="stylesheet" href="./prototype/styles.css" />
+  </head>
+  <body class="bg-light">
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="sidebar__brand">
+          <img class="sidebar__logo" src="./Inbox/RFlogo.jpg" alt="Редкие Рыбы" />
+          <div class="sidebar__name-block">
+            <span class="sidebar__name">Rare Fish Radio</span>
+            <span class="sidebar__sub">Design Prototype</span>
+          </div>
+          <div class="bg-toggle">
+            <button class="bg-btn" data-bg="dark">Тёмная</button>
+            <button class="bg-btn is-active" data-bg="light">Светлая</button>
+          </div>
+        </div>
+
+        <div class="sidebar__section">
+          <div class="sidebar__label">Концепция</div>
+          <div id="concept-list"></div>
+        </div>
+
+        <div class="sidebar__section">
+          <div class="sidebar__label">Экран</div>
+          <div id="screen-list"></div>
+        </div>
+      </aside>
+
+      <main class="stage">
+        <div class="phone">
+          <div class="phone__chassis">
+            <div class="phone__screen" id="phone-screen">
+              <header class="status-bar">
+                <span class="status-bar__time">9:41</span>
+                <span class="status-bar__center">Редкие Рыбы</span>
+                <span class="status-bar__right">●●●</span>
+              </header>
+              <div id="content-area"></div>
+              <nav class="tab-bar" id="tab-bar"></nav>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <aside class="sidebar-right">
+        <div class="sidebar__section">
+          <div class="sidebar__label">Трек</div>
+          <div id="track-list"></div>
+        </div>
+      </aside>
+    </div>
+
+    <script src="./prototype/app.js"></script>
+  </body>
+</html>

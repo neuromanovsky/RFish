@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Rare Fish Concept 01</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="studio-shell">
+      <aside class="studio-panel">
+        <div class="studio-panel__block">
+          <p class="eyebrow">Concept 01</p>
+          <h1>Radio As Object</h1>
+          <p class="muted">
+            Fullscreen-концепт с мягкой материальностью, без стандартного нижнего
+            меню и с адаптацией под обложку трека.
+          </p>
+        </div>
+
+        <div class="studio-panel__block">
+          <p class="section-label">Экраны</p>
+          <div class="scene-list" id="scene-list"></div>
+        </div>
+
+        <div class="studio-panel__block">
+          <p class="section-label">Песни</p>
+          <div class="track-list" id="track-list"></div>
+        </div>
+      </aside>
+
+      <main class="device-stage">
+        <section class="device">
+          <div class="device__body">
+            <div class="device__noise"></div>
+            <div class="device__screen" id="device-screen">
+              <header class="status-bar">
+                <span>9:41</span>
+                <span>Rare Fish</span>
+                <span>Live</span>
+              </header>
+
+              <div class="screen-layer" id="screen-layer"></div>
+
+              <button class="dock-toggle" id="dock-toggle" aria-label="Open navigation">
+                <span></span>
+                <span></span>
+              </button>
+
+              <div class="nav-dock" id="nav-dock"></div>
+
+              <div class="confirm-sheet" id="confirm-sheet" aria-hidden="true">
+                <div class="confirm-sheet__card">
+                  <p class="section-label">Remove from Catch</p>
+                  <h3>Убрать трек из избранного?</h3>
+                  <p class="muted">
+                    Это действие можно вернуть позже, но сейчас трек исчезнет из
+                    коллекции.
+                  </p>
+                  <div class="confirm-sheet__actions">
+                    <button class="ghost-button" data-action="close-confirm">
+                      Отмена
+                    </button>
+                    <button class="primary-button" data-action="confirm-remove">
+                      Убрать
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
