@@ -124,18 +124,18 @@
 
   /* ── Concept data ──────────────────────────────────── */
   var CONCEPTS = [
-    { id: 'a', letter: 'A', name: 'Фулл',      desc: 'Обложка — весь экран' },
-    { id: 'b', letter: 'B', name: 'Вертикаль', desc: 'Кнопки в колонке справа' },
-    { id: 'd', letter: 'D', name: 'Среда',     desc: 'Обложка размытым фоном' },
-    { id: 'g', letter: 'G', name: 'Ретро',     desc: 'Кнопки слева, рамка частоты' },
-    { id: 'g2',letter: 'G2',name: 'Ретро-2',  desc: 'Обложка справа, кнопки снизу-слева' },
-    { id: 'h', letter: 'H', name: 'Квадрат',   desc: 'Обложка без отступов' },
-    { id: 'i', letter: 'I', name: 'Круг',      desc: 'Круглая обложка, дисплей' },
+    { id: 'a', letter: 'A', name: 'Full',       desc: 'Cover fills the screen' },
+    { id: 'b', letter: 'B', name: 'Vertical',  desc: 'Controls column on right' },
+    { id: 'd', letter: 'D', name: 'Ambient',   desc: 'Blurred cover background' },
+    { id: 'g', letter: 'G', name: 'Retro',     desc: 'Buttons left, display frame' },
+    { id: 'g2',letter: 'G2',name: 'Retro 2',  desc: 'Cover right, buttons below-left' },
+    { id: 'h', letter: 'H', name: 'Square',    desc: 'Full-width cover, no margins' },
+    { id: 'i', letter: 'I', name: 'Circle',    desc: 'Round cover, display panel' },
   ];
 
   /* ── Screens ───────────────────────────────────────── */
   var SCREENS = [
-    { id: 'main',     label: 'Эфир',    icon: 'tabMain'  },
+    { id: 'main',     label: 'Live',    icon: 'tabMain'  },
   ];
 
   /* ── State ─────────────────────────────────────────── */
@@ -157,12 +157,12 @@
   }
 
   /* ── Nav dots HTML helper ──────────────────────────── */
-  function navDots(extraClass) {
-    var cls = extraClass || '';
-    return '<div class="nav-dots ' + cls + '">' +
-      SCREENS.map(function(s) {
-        return '<button class="ndot' + (state.screen === s.id ? ' is-active' : '') + '" data-screen="' + s.id + '"></button>';
-      }).join('') +
+  function navDots() {
+    return '<div class="nav-dots">' +
+      '<span class="ndot is-active"></span>' +
+      '<span class="ndot"></span>' +
+      '<span class="ndot"></span>' +
+      '<span class="ndot"></span>' +
     '</div>';
   }
 
@@ -199,7 +199,7 @@
       '<div class="screen-a__bot-grad"></div>' +
       '<div class="screen-a__ui">' +
         '<div class="screen-a__header">' +
-          '<img class="screen-a__logo" src="' + LOGO + '" alt="Редкие Рыбы" />' +
+          '<img class="screen-a__logo" src="' + LOGO + '" alt="Rare Fish" />' +
           '<span class="screen-a__live"><span class="live-dot" style="color:rgba(255,255,255,0.7)"></span>LIVE</span>' +
         '</div>' +
         '<div class="screen-a__spacer"></div>' +
@@ -210,6 +210,7 @@
           '<button class="screen-a__action' + (fav ? ' is-active' : '') + '" data-action="fav">' + (fav ? I.fishFill : I.fish) + '</button>' +
           '<button class="screen-a__action" data-action="stream">' + I.ext + '</button>' +
         '</div>' +
+        navDots() +
       '</div>' +
     '</div>';
   }
@@ -242,8 +243,7 @@
         '<button class="screen-b__action' + (fav ? ' is-active' : '') + '" data-action="fav">' + (fav ? I.fishFill : I.fish) + '</button>' +
         '<button class="screen-b__action" data-action="stream">' + I.ext + '</button>' +
         '<div class="screen-b__spacer"></div>' +
-        '<div class="screen-b__divider"></div>' +
-        '<div class="screen-b__nav">' + navItems + '</div>' +
+        navDots() +
       '</div>' +
     '</div>';
   }
@@ -256,7 +256,7 @@
     return '<div class="screen-c screen-enter" style="background:' + t.deviceBg + '">' +
       '<div class="screen-c__inner">' +
         '<div class="screen-c__header">' +
-          '<img class="screen-c__logo" src="' + LOGO + '" alt="Редкие Рыбы" />' +
+          '<img class="screen-c__logo" src="' + LOGO + '" alt="Rare Fish" />' +
           '<span class="screen-c__live"><span class="live-dot" style="color:rgba(255,255,255,0.6)"></span>LIVE</span>' +
         '</div>' +
         '<img class="screen-c__cover" src="' + t.cover + '" alt="" />' +
@@ -298,6 +298,7 @@
           '<button class="screen-d__action' + (fav ? ' is-active' : '') + '" data-action="fav">' + (fav ? I.fishFill : I.fish) + '</button>' +
           '<button class="screen-d__action" data-action="stream">' + I.ext + '</button>' +
         '</div>' +
+        navDots() +
       '</div>' +
     '</div>';
   }
@@ -325,9 +326,9 @@
       '<div class="screen-e__controls">' +
         '<button class="screen-e__play" data-action="play">' + (state.isPlaying ? I.pause : I.play) + '</button>' +
         '<button class="screen-e__action' + (fav ? ' is-active' : '') + '" data-action="fav">' +
-          (fav ? I.fishFill : I.fish) + '<span>Поймать</span>' +
+          (fav ? I.fishFill : I.fish) + '<span>Catch</span>' +
         '</button>' +
-        '<button class="screen-e__action" data-action="stream">' + I.ext + '<span>Стрим</span></button>' +
+        '<button class="screen-e__action" data-action="stream">' + I.ext + '<span>Stream</span></button>' +
       '</div>' +
     '</div>';
   }
@@ -339,7 +340,7 @@
     var fav = state.favorites[t.id];
     return '<div class="screen-f screen-enter">' +
       '<div class="screen-f__header">' +
-        '<span class="screen-f__station">Редкие Рыбы</span>' +
+        '<span class="screen-f__station">Rare Fish</span>' +
         '<span class="screen-f__onair"><span class="live-dot" style="color:var(--accent)"></span>LIVE</span>' +
       '</div>' +
       '<div class="screen-f__mid">' +
@@ -437,6 +438,7 @@
         '<button class="screen-h__play" data-action="play">' + (state.isPlaying ? I.pause : I.play) + '</button>' +
         '<button class="screen-h__action" data-action="stream">' + I.ext + '</button>' +
       '</div>' +
+      navDots() +
     '</div>';
   }
 
@@ -448,7 +450,7 @@
     var fav = state.favorites[t.id];
     return '<div class="screen-i screen-enter" style="background:' + t.deviceBg + '">' +
       '<div class="screen-i__header">' +
-        '<span class="screen-i__station">Редкие Рыбы</span>' +
+        '<span class="screen-i__station">Rare Fish</span>' +
         '<span class="screen-i__live"><span class="live-dot" style="color:var(--accent)"></span>LIVE</span>' +
       '</div>' +
       '<div class="screen-i__circle">' +
@@ -464,6 +466,7 @@
         '<button class="screen-i__btn" data-action="stream">' + I.ext + '</button>' +
         '<button class="screen-i__btn" data-action="settings">' + I.gear + '</button>' +
       '</div>' +
+      navDots() +
     '</div>';
   }
 
@@ -539,7 +542,7 @@
     return '<div class="sec-screen screen-enter">' +
       '<div class="sec-content">' +
         '<div class="sec-head">' +
-          '<div class="sec-head__label">Эфир</div>' +
+          '<div class="sec-head__label">Live</div>' +
           '<div class="sec-head__title">Треки</div>' +
         '</div>' +
         '<div class="plist-section-label">Сейчас</div>' +
@@ -612,13 +615,13 @@
     return '<div class="sec-screen screen-enter">' +
       '<div class="sec-content">' +
         '<div class="sec-head">' +
-          '<div class="sec-head__label">Редкие Рыбы</div>' +
+          '<div class="sec-head__label">Rare Fish</div>' +
           '<div class="sec-head__title">Новости</div>' +
         '</div>' +
         '<div class="news-list">' +
           posts.map(function(p) {
             return '<div class="news-item">' +
-              '<div class="news-meta">Редкие Рыбы · ' + p.date + '</div>' +
+              '<div class="news-meta">Rare Fish · ' + p.date + '</div>' +
               '<div class="news-text">' + p.text + '</div>' +
             '</div>';
           }).join('') +
