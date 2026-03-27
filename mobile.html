@@ -109,6 +109,23 @@
         color: rgba(255,255,255,0.35);
       }
 
+      /* Fullscreen button in drawer */
+      .mobile-fullscreen-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        margin-top: 16px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.08);
+        color: rgba(255,255,255,0.5);
+        font-size: 13px;
+        text-align: left;
+        cursor: pointer;
+      }
+
       /* Handle bar */
       .mobile-drawer__handle {
         width: 36px;
@@ -130,10 +147,7 @@
       <div id="content-area"></div>
     </div>
 
-    <!-- Floating buttons -->
-    <button class="mobile-toggle" id="mobile-fullscreen" style="right:68px">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h6v2H5v4H3zM15 3h6v6h-2V5h-4zM3 15h2v4h4v2H3zM19 19h-4v2h6v-6h-2z"/></svg>
-    </button>
+    <!-- Floating menu button -->
     <button class="mobile-toggle" id="mobile-toggle">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
     </button>
@@ -148,6 +162,10 @@
         <div id="track-list"></div>
         <div class="sidebar__label">Экран</div>
         <div id="screen-list"></div>
+        <button class="mobile-fullscreen-btn" id="mobile-fullscreen">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M3 3h6v2H5v4H3zM15 3h6v6h-2V5h-4zM3 15h2v4h4v2H3zM19 19h-4v2h6v-6h-2z"/></svg>
+          Полный экран <span style="opacity:0.4">· Android</span>
+        </button>
       </div>
     </div>
 
