@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Rare Fish — Mobile</title>
+    <link rel="stylesheet" href="./prototype/styles.css" />
+    <style>
+      html, body { height: 100%; overflow: hidden; background: #06080e; }
+
+      /* Hide desktop shell */
+      .shell { display: block; height: 100%; overflow: hidden; }
+
+      /* Phone screen = full viewport */
+      .mobile-screen {
+        position: fixed;
+        inset: 0;
+        background: #08090e;
+        overflow: hidden;
+      }
+      .mobile-screen .status-bar {
+        padding-top: max(16px, env(safe-area-inset-top));
+      }
+
+      /* Floating menu button */
+      .mobile-toggle {
+        position: fixed;
+        bottom: max(20px, env(safe-area-inset-bottom, 20px));
+        right: 16px;
+        z-index: 1000;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(255,255,255,0.12);
+        backdrop-filter: blur(16px);
+        color: rgba(255,255,255,0.7);
+        font-size: 18px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      }
+      .mobile-toggle svg { width: 20px; height: 20px; }
+
+      /* Drawer */
+      .mobile-drawer {
+        position: fixed;
+        inset: 0;
+        z-index: 900;
+        background: rgba(0,0,0,0.6);
+        backdrop-filter: blur(4px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+      }
+      .mobile-drawer.is-open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .mobile-drawer__sheet {
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        max-height: 70vh;
+        overflow-y: auto;
+        background: #111418;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        border-radius: 20px 20px 0 0;
+        padding: 20px 16px max(20px, env(safe-area-inset-bottom));
+        transform: translateY(100%);
+        transition: transform 0.25s ease;
+      }
+      .mobile-drawer.is-open .mobile-drawer__sheet {
+        transform: translateY(0);
+      }
+
+      .mobile-drawer__sheet .sidebar__label {
+        color: rgba(255,255,255,0.4);
+        font-size: 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        margin-bottom: 8px;
+        margin-top: 14px;
+      }
+      .mobile-drawer__sheet .sidebar__label:first-child { margin-top: 0; }
+
+      /* Reuse sidebar button styles */
+      .mobile-drawer__sheet .concept-btn,
+      .mobile-drawer__sheet .track-btn,
+      .mobile-drawer__sheet .screen-nav-btn {
+        color: rgba(255,255,255,0.55);
+      }
+      .mobile-drawer__sheet .concept-btn:hover,
+      .mobile-drawer__sheet .concept-btn.is-active,
+      .mobile-drawer__sheet .track-btn:hover,
+      .mobile-drawer__sheet .track-btn.is-active,
+      .mobile-drawer__sheet .screen-nav-btn:hover,
+      .mobile-drawer__sheet .screen-nav-btn.is-active {
+        color: #fff;
+        background: rgba(255,255,255,0.08);
+      }
+      .mobile-drawer__sheet .concept-btn__desc,
+      .mobile-drawer__sheet .track-btn__artist {
+        color: rgba(255,255,255,0.35);
+      }
+
+      /* Handle bar */
+      .mobile-drawer__handle {
+        width: 36px;
+        height: 4px;
+        border-radius: 2px;
+        background: rgba(255,255,255,0.2);
+        margin: 0 auto 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Full-screen phone content -->
+    <div class="mobile-screen" id="phone-screen">
+      <header class="status-bar">
+        <span class="status-bar__time">9:41</span>
+        <span class="status-bar__center">Редкие Рыбы</span>
+        <span class="status-bar__right">●●●</span>
+      </header>
+      <div id="content-area"></div>
+    </div>
+
+    <!-- Floating toggle -->
+    <button class="mobile-toggle" id="mobile-toggle">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+    </button>
+
+    <!-- Bottom drawer -->
+    <div class="mobile-drawer" id="mobile-drawer">
+      <div class="mobile-drawer__sheet">
+        <div class="mobile-drawer__handle"></div>
+        <div class="sidebar__label">Концепция</div>
+        <div id="concept-list"></div>
+        <div class="sidebar__label">Трек</div>
+        <div id="track-list"></div>
+        <div class="sidebar__label">Экран</div>
+        <div id="screen-list"></div>
+      </div>
+    </div>
+
+    <script src="./prototype/app.js"></script>
+    <script>
+      var drawer = document.getElementById('mobile-drawer');
+      var toggle = document.getElementById('mobile-toggle');
+
+      toggle.addEventListener('click', function() {
+        drawer.classList.toggle('is-open');
+      });
+
+      // Close drawer on backdrop tap
+      drawer.addEventListener('click', function(e) {
+        if (e.target === drawer) {
+          drawer.classList.remove('is-open');
+        }
+      });
+
+      // Close drawer when concept/track/screen selected
+      document.addEventListener('click', function(e) {
+        if (e.target.closest('[data-concept]') || e.target.closest('[data-track]') || e.target.closest('[data-screen]')) {
+          setTimeout(function() { drawer.classList.remove('is-open'); }, 150);
+        }
+      });
+    </script>
+  </body>
+</html>
