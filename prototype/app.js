@@ -136,9 +136,6 @@
   /* ── Screens ───────────────────────────────────────── */
   var SCREENS = [
     { id: 'main',     label: 'Эфир',    icon: 'tabMain'  },
-    { id: 'playlist', label: 'Треки',   icon: 'tabList'  },
-    { id: 'catch',    label: 'Поймано', icon: 'tabCatch' },
-    { id: 'news',     label: 'Новости', icon: 'tabNews'  },
   ];
 
   /* ── State ─────────────────────────────────────────── */
@@ -187,11 +184,8 @@
         '</button>';
     }).join('');
 
-    document.getElementById('screen-list').innerHTML = SCREENS.map(function(s) {
-      return '<button class="screen-nav-btn' + (state.screen === s.id ? ' is-active' : '') + '" data-screen="' + s.id + '">' +
-        I[s.icon] + s.label +
-        '</button>';
-    }).join('');
+    var sl = document.getElementById('screen-list');
+    if (sl) sl.innerHTML = '';
   }
 
   /* ════════════════════════════════════════════════════
@@ -216,7 +210,6 @@
           '<button class="screen-a__action' + (fav ? ' is-active' : '') + '" data-action="fav">' + (fav ? I.fishFill : I.fish) + '</button>' +
           '<button class="screen-a__action" data-action="stream">' + I.ext + '</button>' +
         '</div>' +
-        navDots() +
       '</div>' +
     '</div>';
   }
@@ -277,7 +270,6 @@
           '<button class="screen-c__play" data-action="play">' + (state.isPlaying ? I.pause : I.play) + '</button>' +
           '<button class="screen-c__action" data-action="stream">' + I.ext + '</button>' +
         '</div>' +
-        '<div class="screen-c__nav">' + navDots() + '</div>' +
       '</div>' +
     '</div>';
   }
@@ -306,7 +298,6 @@
           '<button class="screen-d__action' + (fav ? ' is-active' : '') + '" data-action="fav">' + (fav ? I.fishFill : I.fish) + '</button>' +
           '<button class="screen-d__action" data-action="stream">' + I.ext + '</button>' +
         '</div>' +
-        navDots() +
       '</div>' +
     '</div>';
   }
@@ -338,7 +329,6 @@
         '</button>' +
         '<button class="screen-e__action" data-action="stream">' + I.ext + '<span>Стрим</span></button>' +
       '</div>' +
-      '<div class="screen-e__nav">' + navDots() + '</div>' +
     '</div>';
   }
 
@@ -366,7 +356,6 @@
           '<button class="screen-f__play" data-action="play">' + (state.isPlaying ? I.pause : I.play) + '</button>' +
           '<button class="screen-f__action" data-action="stream">' + I.ext + '</button>' +
         '</div>' +
-        navDots('ndot--accent') +
       '</div>' +
     '</div>';
   }
@@ -448,7 +437,6 @@
         '<button class="screen-h__play" data-action="play">' + (state.isPlaying ? I.pause : I.play) + '</button>' +
         '<button class="screen-h__action" data-action="stream">' + I.ext + '</button>' +
       '</div>' +
-      '<div class="screen-h__nav">' + navDots('ndot--accent') + '</div>' +
     '</div>';
   }
 
@@ -476,7 +464,6 @@
         '<button class="screen-i__btn" data-action="stream">' + I.ext + '</button>' +
         '<button class="screen-i__btn" data-action="settings">' + I.gear + '</button>' +
       '</div>' +
-      '<div class="screen-i__nav">' + navDots() + '</div>' +
     '</div>';
   }
 
@@ -650,9 +637,6 @@
     var html;
     switch (state.screen) {
       case 'main':     html = renderMain();     break;
-      case 'playlist': html = renderPlaylist(); break;
-      case 'catch':    html = renderCatch();    break;
-      case 'news':     html = renderNews();     break;
       default:         html = renderMain();
     }
     document.getElementById('content-area').innerHTML = html;
